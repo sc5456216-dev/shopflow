@@ -1,0 +1,60 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShopFlow</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <header>
+    <h1>ShopFlow</h1>
+    <nav>
+      <button data-view="shop" class="nav">Shop</button>
+      <button data-view="cart" class="nav">Cart (<span id="cart-count">0</span>)</button>
+      <button data-view="orders" class="nav">Orders</button>
+      <button id="auth-button" class="nav">Log in</button>
+    </nav>
+  </header>
+  <main>
+    <p id="message" role="status"></p>
+
+    <section id="view-shop">
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search products" aria-label="Search products">
+        <select id="category" aria-label="Filter by category"><option value="">All categories</option></select>
+      </div>
+      <div id="products" class="grid"></div>
+    </section>
+
+    <section id="view-cart" hidden>
+      <h2>Your cart</h2>
+      <ul id="cart-list"></ul>
+      <p class="total">Total: <strong id="cart-total">Rs 0.00</strong></p>
+      <form id="checkout-form">
+        <label>Shipping address <textarea id="address" rows="3" required minlength="5"></textarea></label>
+        <button type="submit">Place order</button>
+      </form>
+    </section>
+
+    <section id="view-orders" hidden>
+      <h2>Your orders</h2>
+      <ul id="order-list"></ul>
+    </section>
+
+    <section id="view-auth" hidden>
+      <h2>Log in or create an account</h2>
+      <form id="auth-form">
+        <label>Username <input id="username" required></label>
+        <label>Password <input id="password" type="password" minlength="8" required></label>
+        <div class="row">
+          <button type="submit" data-mode="login">Log in</button>
+          <button type="submit" data-mode="register" class="secondary">Register</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="{% static 'app.js' %}"></script>
+</body>
+</html>
